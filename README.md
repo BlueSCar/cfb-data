@@ -30,8 +30,8 @@ cfb.getGameData(gameId, function(data){
 
 // get scoreboard data
 var inputs = {
-    year = 2015,
-    week = 5
+    year: 2015,
+    week: 5
 };
 
 cfb.getScoreboard(inputs,function(data){

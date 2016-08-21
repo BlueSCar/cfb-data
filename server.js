@@ -1,5 +1,5 @@
 'use strict';
 
-var game = require('./game.service');
+var cfb = require('./data.service');
 
-module.exports = game;
+module.exports = cfb;
