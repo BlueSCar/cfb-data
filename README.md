@@ -34,7 +34,28 @@ var inputs = {
     week: 5
 };
 
-cfb.getScoreboard(inputs,function(data){
+cfb.getScoreboard(inputs, function(data){
+    console.log(data);
+});
+
+
+// get rankings
+var inputs = {
+    year: 2015,
+    week: 10
+};
+
+cfb.getRankings(inputs, function(data){
+    console.log(data);
+});
+
+
+// get standings
+var inputs = {
+    year: 2015
+};
+
+cfb.getStandings(inputs, function(data){
     console.log(data);
 });
 ```
