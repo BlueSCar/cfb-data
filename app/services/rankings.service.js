@@ -1,13 +1,20 @@
 var request = require('request');
 
 exports.getRankings = function(inputs, callback) {
-    var baseUrl = 'http://cdn.espn.com/core/college-football/rankings/_/seasontype/' + (inputs.seasontype || 2) + '/year/' + inputs.year + '/week/' + inputs.week;
-    var queryParams = {
-        xhr: 1,
-        render: false,
-        device: 'desktop',
-        userab: 18
-    };
+    var baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings';
+    var queryParams = {};
+
+    if (inputs && inputs.year) {
+        queryParams.seasons = inputs.year;
+    }
+
+    if (inputs && inputs.week) {
+        queryParams.weeks = inputs.week;
+    }
+
+    if (inputs && inputs.seasontype) {
+        queryParams.types == inputs.seasontype;
+    }
 
     request({
         url: baseUrl,
@@ -15,7 +22,7 @@ exports.getRankings = function(inputs, callback) {
     }, function(error, response, body) {
         if (!error) {
             var data = JSON.parse(body);
-            callback(data.content.data.rankings);
+            callback(data);
         } else {
             console.log(error);
         }

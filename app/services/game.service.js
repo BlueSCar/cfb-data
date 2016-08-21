@@ -28,3 +28,27 @@ exports.getPlayByPlay = function(id, callback) {
         }
     });
 };
+
+exports.getBoxScore = function(id, callback){
+    var baseUrl = 'http://cdn.espn.com/core/college-football/boxscore';
+    var queryParams = {
+        gameId: id,
+        xhr: 1,
+        render: false,
+        device: 'desktop',
+        userab: 18
+    };
+
+    request({
+        url: baseUrl,
+        qs: queryParams
+    }, function(error, response, body) {
+        if (!error){
+            var data = JSON.parse(body);
+
+            callback(data.gamepackageJSON.boxscore);
+        } else {
+            console.log(error);
+        }
+    });
+};
