@@ -1,5 +1,5 @@
 'use strict';
 
-var cfb = require('./data.service');
+var cfb = require('./app/app');
 
 module.exports = cfb;

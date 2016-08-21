@@ -3,11 +3,11 @@
 - currently supports retrieving the following types of data:
     - detailed play-by-play
     - scores
+    - standings
+    - rankings
 - investigating future support for other types of data
     - team statistics
     - individual statistics
-    - standings
-    - rankings
 
 # install
 ```shell
@@ -22,7 +22,7 @@ var cfb = require('cfb-data');
 // get detailed play-by-play data for a game
 var gameId = 400763535;
 
-cfb.getGameData(gameId, function(data){
+cfb.games.getPlayByPlay(gameId, function(data) {
     // log to the console, write to a file or database, or do whatever you will
     console.log(data);
 });
@@ -34,7 +34,7 @@ var inputs = {
     week: 5
 };
 
-cfb.getScoreboard(inputs, function(data){
+cfb.scoreboard.getScoreboard(inputs, function(data) {
     console.log(data);
 });
 
@@ -45,7 +45,7 @@ var inputs = {
     week: 10
 };
 
-cfb.getRankings(inputs, function(data){
+cfb.rankings.getRankings(inputs, function(data) {
     console.log(data);
 });
 
@@ -55,7 +55,7 @@ var inputs = {
     year: 2015
 };
 
-cfb.getStandings(inputs, function(data){
+cfb.standings.getStandings(inputs, function(data) {
     console.log(data);
 });
 ```
