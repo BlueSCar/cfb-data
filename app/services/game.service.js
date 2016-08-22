@@ -17,12 +17,14 @@ exports.getPlayByPlay = function(id, callback) {
         if (!error) {
             var data = JSON.parse(body);
 
-            data.scoringPlays = data.gamepackageJSON.scoringPlays;
-            data.videos = data.gamepackageJSON.videos;
-            data.drives = data.gamepackageJSON.drives;
-            data.teams = data.gamepackageJSON.header.competitions[0].competitors;
+            var game = {
+                scoringPlays: data.gamepackageJSON.scoringPlays,
+                videos: data.gamepackageJSON.videos,
+                drives: data.gamepackageJSON.drives,
+                teams: data.gamepackageJSON.header.competitions[0].competitors
+            };
 
-            callback(data);
+            callback(game);
         } else {
             console.log(error);
         }
