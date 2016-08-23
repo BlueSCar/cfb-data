@@ -62,6 +62,3 @@ cfb.standings.getStandings(inputs, function(data) {
 
 # license
 MIT
-
-# author
-Bill Radjewski | [@billradjewski](https://twitter.com/billradjewski)
