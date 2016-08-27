@@ -20,6 +20,8 @@ exports.getScoreboard = function(inputs, callback) {
         queryParams.seasontype = inputs.seasontype;
     }
 
+    queryParams.limit = 300;
+
     request({
         url: baseUrl,
         qs: queryParams
