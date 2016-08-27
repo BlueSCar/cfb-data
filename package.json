@@ -11,7 +11,7 @@
     "cfb",
     "statistics"
   ],
-  "author": "Bill Radjewski",
+  "author": "BlueSCar",
   "license": "MIT",
   "dependencies": {
     "request": "^2.74.0"
