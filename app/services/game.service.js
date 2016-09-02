@@ -21,7 +21,11 @@ exports.getPlayByPlay = function(id, callback) {
                 scoringPlays: data.gamepackageJSON.scoringPlays,
                 videos: data.gamepackageJSON.videos,
                 drives: data.gamepackageJSON.drives,
-                teams: data.gamepackageJSON.header.competitions[0].competitors
+                teams: data.gamepackageJSON.header.competitions[0].competitors,
+                id: data.gamepackageJSON.header.id,
+                competitions: data.gamepackageJSON.header.competitions,
+                season: data.gamepackageJSON.header.season,
+                week: data.gamepackageJSON.header.week
             };
 
             callback(game);
