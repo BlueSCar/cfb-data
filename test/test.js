@@ -17,6 +17,7 @@ describe('Games', function() {
         app.games.getBoxScore(gameId, function(data) {
             data.should.exist;
             data.should.be.json;
+            data.id.should.exist;
             done();
         });
     });

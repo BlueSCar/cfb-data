@@ -52,7 +52,10 @@ exports.getBoxScore = function(id, callback){
         if (!error){
             var data = JSON.parse(body);
 
-            callback(data.gamepackageJSON.boxscore);
+            var game = data.gamepackageJSON.boxscore;
+            game.id = data.gameId;
+
+            callback(game);
         } else {
             console.log(error);
         }
