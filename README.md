@@ -1,3 +1,5 @@
+**Update (2.0.0):** Every function now returns a promise.  Existing functionality should still be preserved, so it is safe to update from previous versions without making any changes.
+
 # cfb-data
 
 - currently supports retrieving the following types of data:
@@ -22,7 +24,7 @@ var cfb = require('cfb-data');
 // get detailed play-by-play data for a game
 var gameId = 400763535;
 
-cfb.games.getPlayByPlay(gameId, function(data) {
+cfb.games.getPlayByPlay(gameId).then((data) => {
     // log to the console, write to a file or database, or do whatever you will
     console.log(data);
 });
@@ -34,7 +36,7 @@ var inputs = {
     week: 5
 };
 
-cfb.scoreboard.getScoreboard(inputs, function(data) {
+cfb.scoreboard.getScoreboard(inputs).then((data) => {
     console.log(data);
 });
 
@@ -45,7 +47,7 @@ var inputs = {
     week: 10
 };
 
-cfb.rankings.getRankings(inputs, function(data) {
+cfb.rankings.getRankings(inputs).then((data) => {
     console.log(data);
 });
 
@@ -55,7 +57,7 @@ var inputs = {
     year: 2015
 };
 
-cfb.standings.getStandings(inputs, function(data) {
+cfb.standings.getStandings(inputs).then((data) => {
     console.log(data);
 });
 ```

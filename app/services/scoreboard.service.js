@@ -1,6 +1,6 @@
-var request = require('request');
+var rp = require('request-promise');
 
-exports.getScoreboard = function(inputs, callback) {
+exports.getScoreboard = (inputs, callback) => {
     var baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard';
     var queryParams = {};
 
@@ -22,16 +22,18 @@ exports.getScoreboard = function(inputs, callback) {
 
     queryParams.limit = 300;
 
-    request({
+    var promise = rp({
         url: baseUrl,
-        qs: queryParams
-    }, function(error, response, body) {
-        if (!error) {
-            var data = JSON.parse(body);
-
-            callback(data);
-        } else {
-            console.log(error);
-        }
+        qs: queryParams,
+        json: true
+    })
+    .catch((error) => {
+        console.log(error);
     });
+
+    if (callback){
+        return promise.then(callback);
+    } else {
+        return promise;
+    }
 };

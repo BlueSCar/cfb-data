@@ -1,6 +1,6 @@
-var request = require('request');
+var rp = require('request-promise');
 
-exports.getRankings = function(inputs, callback) {
+exports.getRankings = (inputs, callback) => {
     var baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings';
     var queryParams = {};
 
@@ -16,15 +16,18 @@ exports.getRankings = function(inputs, callback) {
         queryParams.types == inputs.seasontype;
     }
 
-    request({
-        url: baseUrl,
-        qs: queryParams
-    }, function(error, response, body) {
-        if (!error) {
-            var data = JSON.parse(body);
-            callback(data);
-        } else {
+    var promise = rp({
+            url: baseUrl,
+            qs: queryParams,
+            json: true
+        })
+        .catch((error) => {
             console.log(error);
-        }
-    });
+        });
+
+    if (callback) {
+        return promise.then(callback);
+    } else {
+        return promise;
+    }
 };

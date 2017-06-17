@@ -1,6 +1,6 @@
-var request = require('request');
+var rp = require('request-promise');
 
-exports.getPlayByPlay = function(id, callback) {
+exports.getPlayByPlay = (id, callback) => {
     var data = {};
     var baseUrl = 'http://cdn.espn.com/core/college-football/playbyplay';
     var queryParams = {
@@ -10,13 +10,12 @@ exports.getPlayByPlay = function(id, callback) {
         userab: 18
     };
 
-    request({
-        url: baseUrl,
-        qs: queryParams
-    }, function(error, response, body) {
-        if (!error) {
-            var data = JSON.parse(body);
-
+    var promise = rp({
+            url: baseUrl,
+            qs: queryParams,
+            json: true
+        })
+        .then((data) => {
             var game = {
                 scoringPlays: data.gamepackageJSON.scoringPlays,
                 videos: data.gamepackageJSON.videos,
@@ -28,14 +27,20 @@ exports.getPlayByPlay = function(id, callback) {
                 week: data.gamepackageJSON.header.week
             };
 
-            callback(game);
-        } else {
+            return game;
+        })
+        .catch((error) => {
             console.log(error);
-        }
-    });
+        });
+
+    if (callback) {
+        return promise.then(callback);
+    } else {
+        return promise;
+    }
 };
 
-exports.getBoxScore = function(id, callback){
+exports.getBoxScore = (id, callback) => {
     var baseUrl = 'http://cdn.espn.com/core/college-football/boxscore';
     var queryParams = {
         gameId: id,
@@ -45,19 +50,24 @@ exports.getBoxScore = function(id, callback){
         userab: 18
     };
 
-    request({
-        url: baseUrl,
-        qs: queryParams
-    }, function(error, response, body) {
-        if (!error){
-            var data = JSON.parse(body);
-
+    var promise = rp({
+            url: baseUrl,
+            qs: queryParams,
+            json: true
+        })
+        .then((data) => {
             var game = data.gamepackageJSON.boxscore;
             game.id = data.gameId;
 
-            callback(game);
-        } else {
+            return game;
+        })
+        .catch((error) => {
             console.log(error);
-        }
-    });
+        });
+
+    if (callback) {
+        return promise.then(callback);
+    } else {
+        return promise;
+    }
 };

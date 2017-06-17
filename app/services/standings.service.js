@@ -1,6 +1,6 @@
-var request = require('request');
+var rp = require('request-promise');
 
-exports.getStandings = function(inputs, callback) {
+exports.getStandings = (inputs, callback) => {
     var baseUrl = 'http://cdn.espn.com/core/college-football/standings/_/season/' + (inputs.year || new Date().getFullYear()) + '/view/' + (inputs.type || 'fbs');
 
     var queryParams = {
@@ -10,15 +10,21 @@ exports.getStandings = function(inputs, callback) {
         userab: 18
     };
 
-    request({
-        url: baseUrl,
-        qs: queryParams
-    }, function(error, response, body) {
-        if (!error) {
-            var data = JSON.parse(body);
-            callback(data.content.standings.groups);
-        } else {
+    var promise = rp({
+            url: baseUrl,
+            qs: queryParams,
+            json: true
+        })
+        .then((data) => {
+            return data.content.standings.groups;
+        })
+        .catch((error) => {
             console.log(error);
-        }
-    });
+        });
+
+    if (callback) {
+        return promise.then(callback);
+    } else {
+        return promise;
+    }
 };
