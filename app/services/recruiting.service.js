@@ -38,7 +38,7 @@ exports.getPlayerRankings = (options) => {
                     weight: html.find(".weight").text().trim(),
                     stars: html.find(".rating > .yellow").length,
                     rating: html.find(".rating").text().trim().trim(),
-                    college: html.find(".jsonly").prop("title") || "uncommitted"
+                    college: html.find(".right-content .jsonly").prop("title") || "uncommitted"
                 }
 
                 players.push(player);
