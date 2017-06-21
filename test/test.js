@@ -9,6 +9,7 @@ describe('Games', () => {
         app.games.getPlayByPlay(gameId, (data) => {
             data.should.exist;
             data.should.be.json;
+            data.should.not.be.empty;
             done();
         });
     });
@@ -18,15 +19,17 @@ describe('Games', () => {
             .then((data) => {
                 data.should.exist;
                 data.should.be.json;
+                data.should.not.be.empty;
                 done();
             });
     });
 
     it('should populate box score data for the given game id', (done) => {
-        app.games.getBoxScore(gameId,(data) => {
+        app.games.getBoxScore(gameId, (data) => {
             data.should.exist;
             data.should.be.json;
             data.id.should.exist;
+            data.should.not.be.empty;
             done();
         });
     });
@@ -36,6 +39,7 @@ describe('Games', () => {
             .then((data) => {
                 data.should.exist;
                 data.should.be.json;
+                data.should.not.be.empty;
                 data.id.should.exist;
                 done();
             });
@@ -47,6 +51,7 @@ describe('Rankings', () => {
         app.rankings.getRankings({}, (data) => {
             data.should.exist;
             data.should.be.json;
+            data.should.not.be.empty;
             done();
         });
     });
@@ -58,6 +63,7 @@ describe('Rankings', () => {
         }, (data) => {
             data.should.exist;
             data.should.be.json;
+            data.should.not.be.empty;
             done();
         });
     });
@@ -67,6 +73,7 @@ describe('Rankings', () => {
             .then((data) => {
                 data.should.exist;
                 data.should.be.json;
+                data.should.not.be.empty;
                 done();
             });
     });
@@ -79,6 +86,7 @@ describe('Rankings', () => {
             .then((data) => {
                 data.should.exist;
                 data.should.be.json;
+                data.should.not.be.empty;
                 done();
             });
     });
@@ -89,6 +97,7 @@ describe('Scoreboard', () => {
         app.scoreboard.getScoreboard({}, (data) => {
             data.should.exist;
             data.should.be.json;
+            data.should.not.be.empty;
             done();
         });
     });
@@ -100,6 +109,7 @@ describe('Scoreboard', () => {
         }, (data) => {
             data.should.exist;
             data.should.be.json;
+            data.should.not.be.empty;
             done();
         });
     });
@@ -109,6 +119,7 @@ describe('Scoreboard', () => {
             .then((data) => {
                 data.should.exist;
                 data.should.be.json;
+                data.should.not.be.empty;
                 done();
             });
     });
@@ -121,6 +132,7 @@ describe('Scoreboard', () => {
             .then((data) => {
                 data.should.exist;
                 data.should.be.json;
+                data.should.not.be.empty;
                 done();
             });
     });
@@ -133,6 +145,7 @@ describe('Standings', () => {
         }, (data) => {
             data.should.exist;
             data.should.be.json;
+            data.should.not.be.empty;
             done();
         });
     });
@@ -141,10 +154,71 @@ describe('Standings', () => {
         app.standings.getStandings({
                 year: 2015
             })
-            .then(function (data) {
+            .then((data) => {
                 data.should.exist;
                 data.should.be.json;
+                data.should.not.be.empty;
                 done();
             });
+    });
+});
+
+describe('Recruiting', () => {
+    it('should return a promise for a list of individual rankings for the given year', (done) => {
+        app.recruiting.getPlayerRankings({
+                year: 2016
+            })
+            .then((data) => {
+                data.should.exist;
+                data.should.be.json;
+                data.should.not.be.empty;
+                done();
+            })
+    });
+
+    it('should return a promise for a list of individual rankings for the given year and position', (done) => {
+        app.recruiting.getPlayerRankings({
+                year: 2016,
+                position: "DT"
+            })
+            .then((data) => {
+                data.should.exist;
+                data.should.be.json;
+                data.should.not.be.empty;
+                done();
+            })
+    });
+
+    it('should return a promise for a list of individual rankings for the given year and group', (done) => {
+        app.recruiting.getPlayerRankings({
+                year: 2016,
+                group: "JuniorCollege"
+            })
+            .then((data) => {
+                data.should.exist;
+                data.should.be.json;
+                data.should.not.be.empty;
+                done();
+            })
+    });
+
+    it('should return a promise for a list of school rankings for the given year', (done) => {
+        app.recruiting.getSchoolRankings(2016)
+            .then((data) => {
+                data.should.exist;
+                data.should.be.json;
+                data.should.not.be.empty;
+                done();
+            })
+    });
+
+    it('should return a promise for a school\'s commit list for a given year', (done) => {
+        app.recruiting.getSchoolCommits('michigan', 2016)
+            .then((data) => {
+                data.should.exist;
+                data.should.be.json;
+                data.should.not.be.empty;
+                done();
+            })
     });
 });

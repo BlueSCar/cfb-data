@@ -60,6 +60,43 @@ var inputs = {
 cfb.standings.getStandings(inputs).then((data) => {
     console.log(data);
 });
+
+// get recruiting data from 247Composite
+// get player rankings
+cfb.recruiting.getPlayerRankings({
+                year: 2016
+            })
+            .then((data) => {
+                console.log(data);
+            });
+
+cfb.recruiting.getPlayerRankings({
+                year: 2016,
+                position: "DT"
+            })
+            .then((data) => {
+                console.log(data);
+            });
+
+cfb.recruiting.getPlayerRankings({
+                year: 2016,
+                group: "JuniorCollege"
+            })
+            .then((data) => {
+                console.log(data);
+            });
+
+// get school rankings
+cfb.recruiting.getSchoolRankings(2016)
+            .then((data) => {
+                console.log(data);
+            });
+
+// get a school's commit list
+cfb.recruiting.getSchoolCommits('michigan', 2016)
+            .then((data) => {
+                console.log(data);
+            });
 ```
 
 # license
