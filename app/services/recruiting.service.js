@@ -62,7 +62,6 @@ exports.getSchoolRankings = (year) => {
         })
         .then((body) => {
             let $ = cheerio.load(body);
-            console.log(body);
             let schools = [];
 
             $("ul.team-rankings-index > li:not([class])").each(function (index) {
