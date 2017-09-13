@@ -44,6 +44,16 @@ describe('Games', () => {
                 done();
             });
     });
+
+    it('should return a promise for game summary data for the given game id', (done) => {
+        app.games.getSummary(gameId)
+            .then((data) => {
+                data.should.exist;
+                data.should.be.json;
+                data.should.not.be.empty;
+                done();
+            });
+    });
 });
 
 describe('Rankings', () => {

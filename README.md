@@ -19,17 +19,32 @@ npm install cfb-data
 # use
 ```javascript
 var cfb = require('cfb-data');
+```
 
-
-// get detailed play-by-play data for a game
+## games
+```javascript
 var gameId = 400763535;
 
+// get detailed play-by-play data for a game
 cfb.games.getPlayByPlay(gameId).then((data) => {
     // log to the console, write to a file or database, or do whatever you will
     console.log(data);
 });
 
+// get box score
 
+cfb.games.getBoxScore(id).then((data) => {
+    conosole.log(data);
+});
+
+// get game all game data
+cfb.games.getSummary(gameId).then((data) => {
+    console.log(data);
+});
+```
+
+## scores
+```javascript
 // get scoreboard data
 var inputs = {
     year: 2015,
@@ -39,8 +54,48 @@ var inputs = {
 cfb.scoreboard.getScoreboard(inputs).then((data) => {
     console.log(data);
 });
+```
 
+## schedules
+```javascript
+cfb.schedule.getSchedule({
+    groups: 80,
+    year: 2017,
+    week: 8
+}).then((data) => {
+    console.log(data);
+});
+```
 
+## conferences
+```javascript
+cfb.scoreboard.getConferences().then((data) => {
+    console.log(data);
+});
+```
+
+## teams
+```javascript
+// get list of teams
+cfb.teams.getTeamList().then((data) => {
+    console.log(data);
+});
+
+// get individual team data
+let teamId = 130;
+
+cfb.teams.getTeamInfo(teamId).then((data) => {
+    console.log(data);
+});
+
+// get team roster data
+cfb.teams.getTeamPlayers(teamId).then((data) => {
+
+});
+```
+
+## rankings
+```javascript
 // get rankings
 var inputs = {
     year: 2015,
@@ -50,8 +105,10 @@ var inputs = {
 cfb.rankings.getRankings(inputs).then((data) => {
     console.log(data);
 });
+```
 
-
+## standings
+```javascript
 // get standings
 var inputs = {
     year: 2015
@@ -60,7 +117,10 @@ var inputs = {
 cfb.standings.getStandings(inputs).then((data) => {
     console.log(data);
 });
+```
 
+## recruiting
+```javascript
 // get recruiting data from 247Composite
 // get player rankings
 cfb.recruiting.getPlayerRankings({

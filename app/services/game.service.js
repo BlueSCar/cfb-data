@@ -71,3 +71,20 @@ exports.getBoxScore = (id, callback) => {
         return promise;
     }
 };
+
+exports.getSummary = (id) => {
+    var data = {};
+    var baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary';
+    var queryParams = {
+        event: id
+    };
+
+    return rp({
+            url: baseUrl,
+            qs: queryParams,
+            json: true
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};

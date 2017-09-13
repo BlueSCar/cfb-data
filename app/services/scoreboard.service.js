@@ -23,17 +23,26 @@ exports.getScoreboard = (inputs, callback) => {
     queryParams.limit = 300;
 
     var promise = rp({
-        url: baseUrl,
-        qs: queryParams,
-        json: true
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+            url: baseUrl,
+            qs: queryParams,
+            json: true
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 
-    if (callback){
+    if (callback) {
         return promise.then(callback);
     } else {
         return promise;
     }
+};
+
+exports.getConferences = () => {
+    let baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard/conferences';
+
+    return rp({
+        url: baseUrl,
+        json: true
+    });
 };

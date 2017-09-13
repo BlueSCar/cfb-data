@@ -102,20 +102,20 @@ exports.getSchoolCommits = (school, year) => {
 
             let players = [];
 
-            $(".rankingcmp_lst > li:not([class])").each(function (index) {
+            $(".ri-list > li:not([class])").each(function (index) {
                 let html = $(this);
 
                 let player = {
-                    name: html.find(".playerinfo_blk a.name").text().trim(),
-                    highSchool: html.find(".playerinfo_blk span.meta").text().trim(),
-                    position: html.find(".playerinfo_blk .position").text().trim(),
-                    height: html.find(".playerinfo_blk .height").text().trim(),
-                    weight: html.find(".playerinfo_blk .weight").text().trim(),
-                    stars: html.find(".playerinfo_blk .rating > .yellow").length,
-                    rating: html.find(".playerinfo_blk .rating").clone().children().remove().end().text().trim(),
-                    nationalRank: html.find(".playerinfo_blk .natrank").first().text().trim(),
-                    stateRank: html.find(".playerinfo_blk .sttrank").first().text().trim(),
-                    positionRank: html.find(".playerinfo_blk .posrank").first().text().trim()
+                    name: html.find(".list-data a.name").text().trim(),
+                    highSchool: html.find(".list-data span.meta").text().trim(),
+                    position: $(html.find(".metrics-list li")[0]).text().trim(),
+                    height: $(html.find(".metrics-list li")[1]).text().trim(),
+                    weight: $(html.find(".metrics-list li")[2]).text().trim(),
+                    stars: html.find(".list-data .rating .star > .icon-starsolid.yellow").length,
+                    rating: html.find(".list-data .rating .score").clone().children().remove().end().text().trim(),
+                    nationalRank: html.find(".list-data .natrank").first().text().trim(),
+                    stateRank: html.find(".list-data .sttrank").first().text().trim(),
+                    positionRank: html.find(".list-data .posrank").first().text().trim()
                 }
 
                 players.push(player);
