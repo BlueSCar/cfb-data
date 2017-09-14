@@ -4,9 +4,11 @@ let getTeamList = (inputs) => {
     let baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams';
     let queryParams = {};
 
-    if (knputs && inputs.groups){
+    if (inputs && inputs.groups){
         queryParams.groups = inputs.groups
     }
+
+    queryParams.limit = 1000;
 
     return rp({
         url: baseUrl,

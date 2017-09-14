@@ -11,6 +11,28 @@
     - team statistics
     - individual statistics
 
+# contents
+1. [install](#install)
+2. [use](#use)
+
+    a. [games](#games)
+
+    b. [scores](#scores)
+
+    c. [schedules](#schedules)
+
+    d. [conferences](#conferences)
+
+    e. [teams](#teams)
+
+    f. [rankings](#rankings)
+
+    g. [standings](#standings)
+
+    h. [recruiting](#recruiting)
+
+3. [license](#license)
+
 # install
 ```shell
 npm install cfb-data
