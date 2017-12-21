@@ -40,145 +40,107 @@ npm install cfb-data
 
 # use
 ```javascript
-var cfb = require('cfb-data');
+const cfb = require('cfb-data');
 ```
 
 ## games
 ```javascript
-var gameId = 400763535;
+const gameId = 400763535;
 
 // get detailed play-by-play data for a game
-cfb.games.getPlayByPlay(gameId).then((data) => {
-    // log to the console, write to a file or database, or do whatever you will
-    console.log(data);
-});
+const result = await cfb.games.getPlayByPlay(gameId);
 
 // get box score
-
-cfb.games.getBoxScore(id).then((data) => {
-    conosole.log(data);
-});
+const result = await cfb.games.getBoxScore(id);
 
 // get game all game data
-cfb.games.getSummary(gameId).then((data) => {
-    console.log(data);
-});
+const summary = await cfb.games.getSummary(gameId);
 ```
 
 ## scores
 ```javascript
 // get scoreboard data
-var inputs = {
+const inputs = {
     year: 2015,
     week: 5
 };
 
-cfb.scoreboard.getScoreboard(inputs).then((data) => {
-    console.log(data);
-});
+const resul t= cfb.scoreboard.getScoreboard(inputs);
 ```
 
 ## schedules
 ```javascript
-cfb.schedule.getSchedule({
-    groups: 80,
+const inputs({
+    groups: 80, // all FBS games
     year: 2017,
     week: 8
-}).then((data) => {
-    console.log(data);
 });
+
+const result = await cfb.schedule.getSchedule(inputs);
 ```
 
 ## conferences
 ```javascript
-cfb.scoreboard.getConferences().then((data) => {
-    console.log(data);
-});
+const results = await cfb.scoreboard.getConferences();
 ```
 
 ## teams
 ```javascript
 // get list of teams
-cfb.teams.getTeamList().then((data) => {
-    console.log(data);
-});
+const result = await cfb.teams.getTeamList();
 
 // get individual team data
-let teamId = 130;
-
-cfb.teams.getTeamInfo(teamId).then((data) => {
-    console.log(data);
-});
+const teamId = 130;
+const result = await cfb.teams.getTeamInfo(teamId);
 
 // get team roster data
-cfb.teams.getTeamPlayers(teamId).then((data) => {
-
-});
+const result = await cfb.teams.getTeamPlayers(teamId);
 ```
 
 ## rankings
 ```javascript
 // get rankings
-var inputs = {
+const inputs = {
     year: 2015,
     week: 10
 };
 
-cfb.rankings.getRankings(inputs).then((data) => {
-    console.log(data);
-});
+const result = await cfb.rankings.getRankings(inputs);
 ```
 
 ## standings
 ```javascript
 // get standings
-var inputs = {
+const inputs = {
     year: 2015
 };
 
-cfb.standings.getStandings(inputs).then((data) => {
-    console.log(data);
-});
+const result = await cfb.standings.getStandings(inputs);
 ```
 
 ## recruiting
 ```javascript
 // get recruiting data from 247Composite
 // get player rankings
-cfb.recruiting.getPlayerRankings({
-                year: 2016
-            })
-            .then((data) => {
-                console.log(data);
-            });
+const result = await cfb.recruiting.getPlayerRankings({
+                    year: 2016
+                });
 
-cfb.recruiting.getPlayerRankings({
-                year: 2016,
-                position: "DT"
-            })
-            .then((data) => {
-                console.log(data);
-            });
+const result = await cfb.recruiting.getPlayerRankings({
+                    year: 2016,
+                    position: "DT"
+                });
 
-cfb.recruiting.getPlayerRankings({
-                year: 2016,
-                group: "JuniorCollege"
-            })
-            .then((data) => {
-                console.log(data);
-            });
+const result = await cfb.recruiting.getPlayerRankings({
+                    year: 2016,
+                    group: "JuniorCollege"
+                });
 
 // get school rankings
-cfb.recruiting.getSchoolRankings(2016)
-            .then((data) => {
-                console.log(data);
-            });
+const result = await cfb.recruiting.getSchoolRankings(2016);
 
 // get a school's commit list
-cfb.recruiting.getSchoolCommits('michigan', 2016)
-            .then((data) => {
-                console.log(data);
-            });
+const result = await cfb.recruiting.getSchoolCommits('michigan', 2016);
 ```
 
 # license

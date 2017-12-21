@@ -20,7 +20,7 @@ exports.getScoreboard = (inputs, callback) => {
         queryParams.seasontype = inputs.seasontype;
     }
 
-    queryParams.limit = 300;
+    queryParams.limit = 900;
 
     var promise = rp({
             url: baseUrl,
