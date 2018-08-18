@@ -6,7 +6,7 @@ describe('Games', () => {
     var gameId = 400763535;
 
     it('should populate play by play data for the given game id', (done) => {
-        app.games.getPlayByPlay(gameId, (data) => {
+        app.games.getPlayByPlay(gameId).then((data) => {
             data.should.exist;
             data.should.be.json;
             data.should.not.be.empty;
@@ -25,7 +25,7 @@ describe('Games', () => {
     });
 
     it('should populate box score data for the given game id', (done) => {
-        app.games.getBoxScore(gameId, (data) => {
+        app.games.getBoxScore(gameId).then((data) => {
             data.should.exist;
             data.should.be.json;
             data.id.should.exist;
@@ -58,7 +58,7 @@ describe('Games', () => {
 
 describe('Rankings', () => {
     it('should populate rankings for the current week and year', (done) => {
-        app.rankings.getRankings({}, (data) => {
+        app.rankings.getRankings({}).then((data) => {
             data.should.exist;
             data.should.be.json;
             data.should.not.be.empty;
@@ -70,7 +70,7 @@ describe('Rankings', () => {
         app.rankings.getRankings({
             year: 2015,
             week: 5
-        }, (data) => {
+        }).then((data) => {
             data.should.exist;
             data.should.be.json;
             data.should.not.be.empty;
@@ -104,7 +104,7 @@ describe('Rankings', () => {
 
 describe('Scoreboard', () => {
     it('should populate scoreboard data for the current week and year', (done) => {
-        app.scoreboard.getScoreboard({}, (data) => {
+        app.scoreboard.getScoreboard({}).then((data) => {
             data.should.exist;
             data.should.be.json;
             data.should.not.be.empty;
@@ -116,7 +116,7 @@ describe('Scoreboard', () => {
         app.scoreboard.getScoreboard({
             year: 2015,
             week: 5
-        }, (data) => {
+        }).then((data) => {
             data.should.exist;
             data.should.be.json;
             data.should.not.be.empty;
@@ -152,7 +152,7 @@ describe('Standings', () => {
     it('should populate standings for the given year', (done) => {
         app.standings.getStandings({
             year: 2015
-        }, (data) => {
+        }).then((data) => {
             data.should.exist;
             data.should.be.json;
             data.should.not.be.empty;

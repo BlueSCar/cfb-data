@@ -65,16 +65,16 @@ const inputs = {
     week: 5
 };
 
-const resul t= cfb.scoreboard.getScoreboard(inputs);
+const result = await cfb.scoreboard.getScoreboard(inputs);
 ```
 
 ## schedules
 ```javascript
-const inputs({
+const inputs = {
     groups: 80, // all FBS games
     year: 2017,
     week: 8
-});
+};
 
 const result = await cfb.schedule.getSchedule(inputs);
 ```

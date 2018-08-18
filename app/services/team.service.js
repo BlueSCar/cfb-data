@@ -1,14 +1,13 @@
-let rp = require('request-promise');
+const rp = require('request-promise');
 
-let getTeamList = (inputs) => {
-    let baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams';
-    let queryParams = {};
-
-    if (inputs && inputs.groups){
-        queryParams.groups = inputs.groups
-    }
-
-    queryParams.limit = 1000;
+const getTeamList = ({
+    groups
+}) => {
+    const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams';
+    const queryParams = {
+        groups,
+        limit: 1000
+    };
 
     return rp({
         url: baseUrl,
@@ -17,18 +16,18 @@ let getTeamList = (inputs) => {
     });
 }
 
-let getTeamInfo = (id) => {
-    let baseUrl = `http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/${id}`;
-    
-        return rp({
-            url: baseUrl,
-            json: true
-        });
+const getTeamInfo = (id) => {
+    const baseUrl = `http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/${id}`;
+
+    return rp({
+        url: baseUrl,
+        json: true
+    });
 }
 
-let getTeamPlayers = (id) => {
-    let baseUrl = `http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/${id}`;
-    let queryParams = {
+const getTeamPlayers = (id) => {
+    const baseUrl = `http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/${id}`;
+    const queryParams = {
         enable: "roster"
     };
 
@@ -40,7 +39,7 @@ let getTeamPlayers = (id) => {
 }
 
 module.exports = {
-    getTeamList: getTeamList,
-    getTeamInfo: getTeamInfo,
-    getTeamPlayers: getTeamPlayers
+    getTeamList,
+    getTeamInfo,
+    getTeamPlayers
 }

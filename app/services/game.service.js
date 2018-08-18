@@ -1,22 +1,21 @@
-var rp = require('request-promise');
+const rp = require('request-promise');
 
-exports.getPlayByPlay = (id, callback) => {
-    var data = {};
-    var baseUrl = 'http://cdn.espn.com/core/college-football/playbyplay';
-    var queryParams = {
+exports.getPlayByPlay = (id) => {
+    const baseUrl = 'http://cdn.espn.com/core/college-football/playbyplay';
+    const queryParams = {
         gameId: id,
         xhr: 1,
         render: 'false',
         userab: 18
     };
 
-    var promise = rp({
+    return rp({
             url: baseUrl,
             qs: queryParams,
             json: true
         })
         .then((data) => {
-            var game = {
+            return {
                 scoringPlays: data.gamepackageJSON.scoringPlays,
                 videos: data.gamepackageJSON.videos,
                 drives: data.gamepackageJSON.drives,
@@ -26,23 +25,15 @@ exports.getPlayByPlay = (id, callback) => {
                 season: data.gamepackageJSON.header.season,
                 week: data.gamepackageJSON.header.week
             };
-
-            return game;
         })
         .catch((error) => {
             console.log(error);
         });
-
-    if (callback) {
-        return promise.then(callback);
-    } else {
-        return promise;
-    }
 };
 
-exports.getBoxScore = (id, callback) => {
-    var baseUrl = 'http://cdn.espn.com/core/college-football/boxscore';
-    var queryParams = {
+exports.getBoxScore = (id) => {
+    const baseUrl = 'http://cdn.espn.com/core/college-football/boxscore';
+    const queryParams = {
         gameId: id,
         xhr: 1,
         render: false,
@@ -50,7 +41,7 @@ exports.getBoxScore = (id, callback) => {
         userab: 18
     };
 
-    var promise = rp({
+    return rp({
             url: baseUrl,
             qs: queryParams,
             json: true
@@ -64,18 +55,11 @@ exports.getBoxScore = (id, callback) => {
         .catch((error) => {
             console.log(error);
         });
-
-    if (callback) {
-        return promise.then(callback);
-    } else {
-        return promise;
-    }
 };
 
 exports.getSummary = (id) => {
-    var data = {};
-    var baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary';
-    var queryParams = {
+    const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary';
+    const queryParams = {
         event: id
     };
 

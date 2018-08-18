@@ -1,18 +1,14 @@
-var rp = require('request-promise');
-var cheerio = require('cheerio');
+const rp = require('request-promise');
+const cheerio = require('cheerio');
 
-exports.getPlayerRankings = (options) => {
-    let baseUrl = `http://247sports.com/Season/${options.year}-Football/CompositeRecruitRankings`;
-    let queryParams = {
-        InstitutionGroup: options.group || "HighSchool",
-        Page: options.page || 1
+exports.getPlayerRankings = ({year, page = 1, group = "HighSchool", position, state}) => {
+    const baseUrl = `http://247sports.com/Season/${year}-Football/CompositeRecruitRankings`;
+    const queryParams = {
+        InstitutionGroup: group,
+        Page: page,
+        Position: position,
+        State: state
     };
-
-    if (options.position) {
-        queryParams["Position"] = options.position
-    } else if (options.state) {
-        queryParams["State"] = options.state
-    }
 
     return rp({
             url: baseUrl,
@@ -51,11 +47,14 @@ exports.getPlayerRankings = (options) => {
         });
 };
 
-exports.getSchoolRankings = (year) => {
-    let baseUrl = `http://247sports.com/Season/${year}-Football/CompositeTeamRankings`;
+exports.getSchoolRankings = (year, page = 1) => {
+    const baseUrl = `http://247sports.com/Season/${year}-Football/CompositeTeamRankings`;
 
     return rp({
             url: baseUrl,
+            qs: {
+                Page: page
+            },
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
             }
@@ -89,7 +88,7 @@ exports.getSchoolRankings = (year) => {
 };
 
 exports.getSchoolCommits = (school, year) => {
-    let baseUrl = `http://${school}.247sports.com/Season/${year}-Football/Commits`;
+    const baseUrl = `http://${school}.247sports.com/Season/${year}-Football/Commits`;
 
     return rp({
             url: baseUrl,

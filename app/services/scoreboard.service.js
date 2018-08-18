@@ -1,28 +1,16 @@
-var rp = require('request-promise');
+const rp = require('request-promise');
 
-exports.getScoreboard = (inputs, callback) => {
-    var baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard';
-    var queryParams = {};
+exports.getScoreboard = ({year, week, groups = 80, seasontype}) => {
+    const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard';
+    const queryParams = {
+        dates: year,
+        week,
+        groups,
+        seasontype,
+        limit: 900
+    };
 
-    if (inputs && inputs.year) {
-        queryParams.dates = inputs.year;
-    }
-
-    if (inputs && inputs.week) {
-        queryParams.week = inputs.week;
-    }
-
-    if (inputs && inputs.groups) {
-        queryParams.groups = inputs.groups;
-    }
-
-    if (inputs && inputs.seasontype) {
-        queryParams.seasontype = inputs.seasontype;
-    }
-
-    queryParams.limit = 900;
-
-    var promise = rp({
+    return rp({
             url: baseUrl,
             qs: queryParams,
             json: true
@@ -30,16 +18,10 @@ exports.getScoreboard = (inputs, callback) => {
         .catch((error) => {
             console.log(error);
         });
-
-    if (callback) {
-        return promise.then(callback);
-    } else {
-        return promise;
-    }
 };
 
 exports.getConferences = () => {
-    let baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard/conferences';
+    const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard/conferences';
 
     return rp({
         url: baseUrl,
