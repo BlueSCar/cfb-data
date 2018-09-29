@@ -1,10 +1,10 @@
 const rp = require('request-promise');
 
 const getSchedule = ({
-    year,
-    week,
-    groups,
-    seasontype
+    year = null,
+    week = null,
+    groups = null,
+    seasontype = null
 }) => {
     const baseUrl = 'http://cdn.espn.com/core/college-football/schedule';
     const queryParams = {

@@ -1,7 +1,7 @@
 const rp = require('request-promise');
 
 const getTeamList = ({
-    groups
+    groups = 80
 }) => {
     const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams';
     const queryParams = {

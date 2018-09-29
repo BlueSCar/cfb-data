@@ -1,6 +1,6 @@
 const rp = require('request-promise');
 
-exports.getScoreboard = ({year, week, groups = 80, seasontype}) => {
+exports.getScoreboard = ({year = null, week = null, groups = 80, seasontype = null}) => {
     const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard';
     const queryParams = {
         dates: year,

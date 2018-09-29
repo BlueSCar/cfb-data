@@ -1,9 +1,9 @@
 const rp = require('request-promise');
 
 exports.getRankings = ({
-    year,
-    week,
-    seasontype
+    year = null,
+    week = null,
+    seasontype = null
 }) => {
     const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings';
 

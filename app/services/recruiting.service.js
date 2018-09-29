@@ -1,7 +1,7 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
-exports.getPlayerRankings = ({year, page = 1, group = "HighSchool", position, state}) => {
+exports.getPlayerRankings = ({year, page = 1, group = "HighSchool", position = null, state = null}) => {
     const baseUrl = `http://247sports.com/Season/${year}-Football/CompositeRecruitRankings`;
     const queryParams = {
         InstitutionGroup: group,
