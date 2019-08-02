@@ -1,6 +1,6 @@
 {
   "name": "cfb-data",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Retrieves college football data from a popular sports website",
   "main": "server.js",
   "scripts": {
