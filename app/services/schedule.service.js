@@ -10,7 +10,7 @@ const getSchedule = ({
     const queryParams = {
         dates: year,
         week,
-        groups,
+        group: groups,
         seasontype: seasontype,
         xhr: 1
     };
