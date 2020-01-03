@@ -7,7 +7,7 @@ exports.getScoreboard = ({year = null, week = null, groups = 80, seasontype = nu
         week,
         groups,
         seasontype,
-        limit: 900
+        limit: 300
     };
 
     return rp({
