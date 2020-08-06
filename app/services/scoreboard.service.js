@@ -1,8 +1,8 @@
-const rp = require('request-promise');
+const axios = require('axios');
 
-exports.getScoreboard = ({year = null, week = null, groups = 80, seasontype = null, limit = 300}) => {
+exports.getScoreboard = async ({year = null, week = null, groups = 80, seasontype = null, limit = 300}) => {
     const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard';
-    const queryParams = {
+    const params = {
         dates: year,
         week,
         groups,
@@ -10,21 +10,16 @@ exports.getScoreboard = ({year = null, week = null, groups = 80, seasontype = nu
         limit
     };
 
-    return rp({
-            url: baseUrl,
-            qs: queryParams,
-            json: true
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    const res = await axios.get(baseUrl, {
+        params
+    });
+
+    return res.data;
 };
 
-exports.getConferences = () => {
+exports.getConferences = async () => {
     const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard/conferences';
 
-    return rp({
-        url: baseUrl,
-        json: true
-    });
+    const res = await axios.get(baseUrl);
+    return res.data;
 };

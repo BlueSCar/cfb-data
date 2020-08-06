@@ -1,13 +1,13 @@
-const rp = require('request-promise');
+const axios = require('axios');
 
-const getSchedule = ({
+const getSchedule = async ({
     year = null,
     week = null,
     groups = null,
     seasontype = null
 }) => {
     const baseUrl = 'http://cdn.espn.com/core/college-football/schedule';
-    const queryParams = {
+    const params = {
         dates: year,
         week,
         group: groups,
@@ -15,14 +15,10 @@ const getSchedule = ({
         xhr: 1
     };
 
-    return rp({
-            url: baseUrl,
-            qs: queryParams,
-            json: true
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    const res = await axios.get(baseUrl, {
+        params
+    });
+    return res.data;
 }
 
 module.exports = {

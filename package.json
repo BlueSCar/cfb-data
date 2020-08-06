@@ -1,6 +1,6 @@
 {
   "name": "cfb-data",
-  "version": "3.0.6",
+  "version": "4.0.0",
   "description": "Retrieves college football data from a popular sports website",
   "main": "server.js",
   "scripts": {
@@ -16,9 +16,8 @@
   "author": "BlueSCar",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.1",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3"
   },
   "repository": {
     "type": "git",

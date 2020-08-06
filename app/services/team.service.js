@@ -1,41 +1,39 @@
-const rp = require('request-promise');
+const axios = require('axios');
 
-const getTeamList = ({
+const getTeamList = async ({
     groups = 80
 }) => {
     const baseUrl = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams';
-    const queryParams = {
+    const params = {
         groups,
         limit: 1000
     };
 
-    return rp({
-        url: baseUrl,
-        qs: queryParams,
-        json: true
+    const res = await axios.get(baseUrl, {
+        params
     });
+
+    return res.data;
 }
 
-const getTeamInfo = (id) => {
+const getTeamInfo = async (id) => {
     const baseUrl = `http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/${id}`;
 
-    return rp({
-        url: baseUrl,
-        json: true
-    });
+    const res = await axios.get(baseUrl);
+    return res.data;
 }
 
-const getTeamPlayers = (id) => {
+const getTeamPlayers = async (id) => {
     const baseUrl = `http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/${id}`;
-    const queryParams = {
+    const params = {
         enable: "roster"
     };
 
-    return rp({
-        url: baseUrl,
-        qs: queryParams,
-        json: true
+    const res = await axios.get(baseUrl, {
+        params
     });
+
+    return res.data;
 }
 
 module.exports = {

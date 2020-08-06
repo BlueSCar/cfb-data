@@ -1,6 +1,6 @@
-const rp = require('request-promise');
+const axios = require('axios');
 
-exports.getRankings = ({
+exports.getRankings = async ({
     year = null,
     week = null,
     seasontype = null
@@ -20,12 +20,9 @@ exports.getRankings = ({
         qs.types = seasontype;
     }
 
-    return rp({
-            url: baseUrl,
-            qs,
-            json: true
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    const res = await axios.get(baseUrl, {
+        params: qs
+    });
+
+    return res.data;
 };
